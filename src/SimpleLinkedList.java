@@ -3,6 +3,14 @@ public class SimpleLinkedList {
     private Node head;
     private Node current;
 
+    public Node getHead() {
+        return head;
+    }
+
+    public void setHead(Node head) {
+        this.head = head;
+    }
+
     public SimpleLinkedList(){
         head = null;
     }
@@ -10,11 +18,15 @@ public class SimpleLinkedList {
     public void addToTail(String data){
         Node newNode = new Node(data);
         Node temp = head;
-        if(head == null)
-
-        while(temp.getNext() != null)
-            temp = temp.getNext();
-        temp.setNext(newNode);
+        if(head == null){
+            head = newNode;
+        }
+        else {
+            while(temp.getNext() != null){
+                temp = temp.getNext();
+            }
+            temp.setNext(newNode);
+        }
     }
 
     public String removeFromHead(){
@@ -53,7 +65,7 @@ public class SimpleLinkedList {
         String nodeStr = "";
         Node temp = head;
         while(temp != null){
-            nodeStr = nodeStr + temp.getData() + "\n";
+            nodeStr = nodeStr + temp.getData() + ",";
             temp = temp.getNext();
         }
         return nodeStr;
@@ -61,19 +73,19 @@ public class SimpleLinkedList {
     }
 
     public Node getIndex(int index){
-        if(head == null){
-            return head;
-        }
-        int i = 0;
-        Node temp = head;
-        while(temp != null && i == index){
-            temp = temp.getNext();
-        }
-        if(i != index) {
+        {
+            Node temp = head;
+            int i = 0;
+            while( temp.getNext() != null )
+            {
+                i++;
+                temp = temp.getNext();
+                if( i == index)
+                {
+                    return temp;
+                }
+            }
             return null;
-        }
-        else{
-            return temp;
         }
 
     }
